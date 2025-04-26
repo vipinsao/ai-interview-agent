@@ -18,11 +18,20 @@ export async function POST(req) {
       apiKey: process.env.OPENROUTER_API_KEY,
     });
     const completion = await openai.chat.completions.create({
-      model: "mistralai/mistral-small-3.1-24b-instruct:free",
+      model: "nvidia/llama-3.1-nemotron-nano-8b-v1:free",
       messages: [{ role: "user", content: FINAL_PROMPT }],
     });
 
-    return NextResponse.json(completion.choices[0].message.content);
+    // Log the full completion response for debugging
+    console.log("API Response:", completion);
+
+    // Check if choices exist and are not empty
+    if (completion.choices && completion.choices.length > 0) {
+      return NextResponse.json(completion.choices[0].message.content);
+    } else {
+      // Handle the case where choices is empty or not present
+      return NextResponse.json({ error: "No response from OpenAI model." });
+    }
   } catch (e) {
     console.log("Error", e);
     return NextResponse.json(e);

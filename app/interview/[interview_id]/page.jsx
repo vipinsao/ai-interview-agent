@@ -14,7 +14,7 @@ function Interview() {
   const [interviewData, setInterviewData] = useState();
   const [userName, setUserName] = useState();
   const [loading, setLoading] = useState(false);
-  const [email, setEmail] = useState();
+  const [userEmail, setUserEmail] = useState();
 
   const { interviewInfo, setInterviewInfo } = useContext(InterviewDataContext);
   const router = useRouter();
@@ -48,7 +48,7 @@ function Interview() {
       .eq("interview_id", interview_id);
     setInterviewInfo({
       userName: userName,
-      userEmail: email,
+      userEmail: userEmail,
       interviewData: Interviews[0],
     });
     router.push("/interview/" + interview_id + "/start");
@@ -115,7 +115,7 @@ function Interview() {
             id="name"
             placeholder="e.g. Alex@gmail.com"
             className="w-full"
-            onChange={(e) => setEmail(e.target.value)}
+            onChange={(e) => setUserEmail(e.target.value)}
           />
         </div>
         <div className="p-3 bg-blue-100 flex gap-4 rounded-lg mt-2 flex-col">

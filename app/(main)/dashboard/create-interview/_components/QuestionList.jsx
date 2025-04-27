@@ -79,29 +79,45 @@ function QuestionList({ formData, onCreateLink }) {
   const GenerateQuestionList = async () => {
     setLoading(true);
     try {
-      // const result = await axios.post("/api/ai-model", {
-      //   ...formData,
-      // });
+      const result = await axios.post("/api/ai-model", {
+        ...formData,
+      });
 
-      // let content = result.data;
+      let content = result.data;
 
-      // // Try to extract JSON block using regex
-      // const match = content.match(/```json\s*([\s\S]*?)```/);
-      // const jsonString = match ? match[1].trim() : content;
+      if (!content) {
+        toast.error("No content received from server.");
+        setLoading(false);
+        return;
+      }
 
-      // let parsed;
+      // Ensure content is a string
+      if (typeof content !== "string") {
+        content = JSON.stringify(content);
+      }
 
-      // try {
-      //   parsed = JSON.parse(jsonString);
-      // } catch (jsonError) {
-      //   toast.error("Invalid JSON format from server.");
-      //   console.error("JSON Parsing Error:", jsonError);
-      //   setLoading(false);
-      //   return;
-      // }
+      // Try to extract JSON block using regex
+      const match = content.match(/```json\s*([\s\S]*?)```/i);
+      const jsonString = match ? match[1].trim() : content.trim();
 
-      // setQuestionList(parsed.interviewQuestions || []);
-      setQuestionList(data);
+      let parsed;
+
+      try {
+        parsed = JSON.parse(jsonString);
+      } catch (jsonError) {
+        console.error("Invalid JSON received from server:", content);
+        toast.error("Invalid JSON format received.");
+        setLoading(false);
+        return;
+      }
+
+      if (!parsed || !parsed.interviewQuestions) {
+        toast.error("No interview questions found in the server response.");
+        setLoading(false);
+        return;
+      }
+      setQuestionList(parsed.interviewQuestions || []);
+      // setQuestionList(data);
       setLoading(false);
     } catch (error) {
       toast.error("Server Error,Try again");

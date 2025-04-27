@@ -82,3 +82,24 @@ format: interviewQuestions=[
   ...
 }]
 🎯 The goal is to create a structured, relevant, and time-optimized interview plan for a {{jobTitle}} role.`;
+
+export const FEEDBACK_PROMPT = `{{conversation}}
+Depends on this Interview Conversation between assistant and user, 
+give me feedback for the user interview. Give me rating out of 10 for Technical Skills, 
+Communication, Problem Solving, and Experience. Also give me a summary in 3 lines 
+about the interview and one line to let me know whether it is recommended 
+for hire or not with a message. Give me the response in JSON format:
+
+{
+  "feedback": {
+    "rating": {
+      "technicalSkills": 5,
+      "communication": 6,
+      "problemSolving": 4,
+      "experience": 7
+    },
+    "summary": "<in 3 lines>",
+    "recommendation": "",
+    "recommendationMsg": ""
+  }
+}`;

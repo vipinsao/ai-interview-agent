@@ -10,7 +10,7 @@ function DashboardProvider({ children }) {
     <SidebarProvider className={"bg-gray-100"}>
       <AppSidebar />
       <div className="w-full">
-        {/* <SidebarTrigger /> */}
+        <SidebarTrigger className={"text-primary font-bold"} />
         <WelcomeContainer />
         {children}
       </div>

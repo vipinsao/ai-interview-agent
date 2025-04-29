@@ -1,4 +1,6 @@
+import { Button } from "@/components/ui/button";
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 
 function page() {
@@ -42,7 +44,13 @@ function page() {
           The Recruiter will review your interview response and will contact you
           regarding the next steps in next 3 to 5 days.
         </p>
-        <p className="text-sm mt-1"> BEST OF LUCK!!</p>
+        <p className="text-sm mt-1 text-purple-700 font-bold">
+          {" "}
+          BEST OF LUCK!!
+        </p>
+        <Link href={"/dashboard"}>
+          <Button className={"mt-2 cursor-pointer w-[100px]"}>Exit</Button>
+        </Link>
       </div>
     </div>
   );

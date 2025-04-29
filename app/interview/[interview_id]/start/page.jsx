@@ -18,6 +18,7 @@ function StartInterview() {
   const [activeUser, setActiveUser] = useState(false);
   const [conversation, setConversation] = useState();
   const vapi = useRef();
+  const [hasInterviewStarted, setHasInterviewStarted] = useState(false);
   const [loading, setLoading] = useState(false);
   const [startTimer, setStartTimer] = useState(false);
   const [resetTimer, setResetTimer] = useState(false);
@@ -25,74 +26,71 @@ function StartInterview() {
   const router = useRouter();
 
   useEffect(() => {
-    if (!interviewInfo) return;
+    if (!interviewInfo || hasInterviewStarted) return;
     const instanceVapi = new Vapi(process.env.NEXT_PUBLIC_VAPI_PUBLIC_KEY);
     vapi.current = instanceVapi;
-    startCall();
-  }, [interviewInfo]);
 
-  useEffect(() => {
-    const handleMessage = (message) => {
-      console.log("Message:", message);
-      if (message?.convresation) {
-        const convoString = JSON.stringify(message.conversation);
-        console.log("Conversation String:", convoString);
-        setConversation(convoString);
-      }
-    };
-    vapi.on("message", handleMessage);
     vapi.current.on("call-start", () => {
+      console.log("Assistant speech has started.");
+      setActiveUser(true);
+    });
+    vapi.current.on("speech-start", () => {
       console.log("Call has started.");
+      toast("Interview has started!");
+      setStartTimer(false);
+      setResetTimer(true);
+    });
+    vapi.current.on("speech-end", () => {
+      console.log("Call has ended.");
       toast("Call Connected...");
       setStartTimer(true);
       setResetTimer(false);
     });
     vapi.current.on("call-end", () => {
-      console.log("Call has ended.");
-      toast("Interview has ended!");
-      setStartTimer(false);
-      setResetTimer(true);
-    });
-
-    vapi.current.on("speech-start", () => {
-      console.log("Assistant speech has started.");
-      setActiveUser(false);
-    });
-    vapi.current.on("speech-end", () => {
       console.log("Assistant speech has ended.");
-      setActiveUser(true);
+      setActiveUser(false);
       GenerateFeedback();
     });
 
-    return () => {
-      vapi.off("message", handleMessage);
-      vapi.off("call-start", () => console.log("END"));
-      vapi.off("speech-start", () => console.log("END"));
-      vapi.off("call-end", () => console.log("END"));
-      vapi.off("speech-end", () => console.log("END"));
+    const handleMessage = (message) => {
+      console.log("Message:", message);
+      if (message?.conversation) {
+        const convoString = JSON.stringify(message.conversation);
+        console.log("Conversation String:", convoString);
+        setConversation(convoString);
+      }
     };
-  }, []);
+
+    if (vapi.current) {
+      vapi.current.on("message", handleMessage);
+    }
+
+    if (vapi.current && interviewInfo?.interviewData?.questionList?.length) {
+      startCall();
+      setHasInterviewStarted(true);
+    }
+  }, [interviewInfo]);
 
   const GenerateFeedback = async () => {
     const result = await axios.post("/api/ai-feedback", {
       conversation: conversation,
     });
 
-    console.log(result);
+    // console.log(result);
 
     // // Safe access: result.data and then get the content
-    // const Content = result.data.data || result.data.content; // fallback if API returns 'data' instead of 'content'
-
-    // if (!Content) {
-    //   console.error("No content found in the API response.");
-    //   return;
-    // }
+    const Content = result.data; // fallback if API returns 'data' instead of 'content'
+    // console.log(Content);
+    if (!Content) {
+      console.error("No content found in the API response.");
+      return;
+    }
 
     // // Remove starting ```json\n and ending ```
-    // const FINAL_CONTENT = Content.replace(/^```json\s*/, "") // removes starting ```json + optional \n
-    //   .replace(/\s*```$/, ""); // removes ending ```
+    const FINAL_CONTENT = Content.replace(/^```json\s*/i, "") // remove starting ```json + optional whitespace
+      .replace(/\s*```$/, "");
 
-    // console.log(FINAL_CONTENT);
+    console.log(FINAL_CONTENT);
     // //save to database
 
     const { data, error } = await supabase
@@ -102,7 +100,7 @@ function StartInterview() {
           userName: interviewInfo?.userName,
           userEmail: interviewInfo?.userEmail,
           interview_id: interview_id,
-          // feedback: JSON.parse(FINAL_CONTENT),
+          feedback: JSON.parse(FINAL_CONTENT),
           recommended: false,
         },
       ])
@@ -192,6 +190,10 @@ function StartInterview() {
   const stopInterview = () => {
     if (vapi.current) {
       vapi.current.stop();
+      setActiveUser(false);
+      setStartTimer(false);
+      setResetTimer(true);
+      toast("Interview has been manually stopped.");
     } else {
       console.error("Vapi instance is not found");
     }

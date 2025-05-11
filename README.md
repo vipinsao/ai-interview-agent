@@ -46,10 +46,13 @@ A smart, modern web application that automates technical interview scheduling, c
 ## 📷 Screenshots
 
 >![Homepage](./homepage.png)
->HomePage
+##Homepage
 >![Dashboard](./dashboard.png)
->Dashboard
-
+##Dashboard
+>![CreateInterview](./createInterview.png)
+##Create Interview
+>![Billing](./billing.png)
+##Billing
 ---
 
 ## ⚙️ Installation
@@ -99,13 +102,7 @@ Next.js (App Router)
 
 ## 🤝 Contributions
 
-This project is built and maintained by **[Vipin Chandra Sao](https://github.com/your-username)**.
-
----
-
-## 📄 License
-
-This project is licensed under the MIT License.
+This project is built and maintained by **[Vipin Chandra Sao](https://github.com/vipinsao)**.
 
 ---
 

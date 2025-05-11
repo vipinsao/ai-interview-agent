@@ -7,7 +7,7 @@ A smart, modern web application that automates technical interview scheduling, c
 
 ## 🚀 Live Demo
 
-🔗 [Click here to view the live app](https://your-deployment-url.vercel.app)  
+🔗 [Click here to view the live app](https://ai-interview-agent-gules.vercel.app/)  
 🎥 [Watch a demo video](https://your-deployment-url.vercel.app/demo.mp4)
 
 ---
@@ -45,7 +45,10 @@ A smart, modern web application that automates technical interview scheduling, c
 
 ## 📷 Screenshots
 
-> Add screenshots or a GIF showing login, scheduling, feedback, etc.
+>![Homepage](./homepage.png)
+>HomePage
+>![Dashboard](./dashboard.png)
+>Dashboard
 
 ---
 

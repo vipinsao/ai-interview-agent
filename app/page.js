@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { toast, Toaster } from "react-hot-toast";
 import { supabase } from "@/services/supabaseClient";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function LandingPage() {
   const router = useRouter();
@@ -107,12 +108,14 @@ export default function LandingPage() {
             >
               Create Interview
             </Button>
-            <Button
-              variant="outline"
-              className="border-gray-300 text-gray-700 hover:bg-gray-100 cursor-pointer"
-            >
-              Watch Demo
-            </Button>
+            <Link href={"/demo.mp4"}>
+              <Button
+                variant="outline"
+                className="border-gray-300 text-gray-700 hover:bg-gray-100 cursor-pointer"
+              >
+                Watch Demo
+              </Button>
+            </Link>
           </div>
         </div>
         <div className="flex justify-center">

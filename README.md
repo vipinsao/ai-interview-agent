@@ -46,13 +46,13 @@ A smart, modern web application that automates technical interview scheduling, c
 ## 📷 Screenshots
 
 >![Homepage](./homepage.png)
-##Homepage
+## Homepage
 >![Dashboard](./dashboard.png)
-##Dashboard
+## Dashboard
 >![CreateInterview](./createInterview.png)
-##Create Interview
+## Create Interview
 >![Billing](./billing.png)
-##Billing
+## Billing
 ---
 
 ## ⚙️ Installation

@@ -93,7 +93,7 @@ function FormContainer({ onHandleInputChange, GoToNext }) {
         </div>
       </div>
       <div className="mt-7 flex justify-end" onClick={GoToNext}>
-        <Button>
+        <Button className={"cursor-pointer"}>
           Generate Question <ArrowRight />
         </Button>
       </div>

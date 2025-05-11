@@ -9,11 +9,13 @@ import { Progress } from "@/components/ui/progress";
 import QuestionList from "./_components/QuestionList";
 import { toast } from "sonner";
 import InterviewLink from "./_components/InterviewLink";
+import { useUser } from "@/app/provider";
 
 function CreateInterview() {
   const router = useRouter();
   const [step, setStep] = useState(1);
   const [formData, setFormData] = useState();
+  const { user } = useUser();
   const [interviewId, setInterviewId] = useState();
   const onHandleInputChange = (field, value) => {
     setFormData((prev) => ({
@@ -24,6 +26,10 @@ function CreateInterview() {
   };
 
   const onGoToNext = () => {
+    if (user?.credits <= 0) {
+      toast("Please add credits!");
+      return;
+    }
     if (
       !formData?.jobPosition ||
       !formData?.jobDescription ||

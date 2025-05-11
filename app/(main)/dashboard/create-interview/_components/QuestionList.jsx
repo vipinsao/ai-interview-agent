@@ -9,61 +9,6 @@ import QuestionListContainer from "./QuestionListContainer";
 import { supabase } from "@/services/supabaseClient";
 import { useUser } from "@/app/provider";
 
-const data = [
-  {
-    question:
-      "Can you briefly introduce yourself and walk us through your educational background?",
-    type: "Experience",
-  },
-  {
-    question:
-      "What programming languages and technologies are you most familiar with?",
-    type: "Technical",
-  },
-  {
-    question: "Why did you choose full stack development as your career path?",
-    type: "Behavioral",
-  },
-  {
-    question:
-      "Describe a personal project or school assignment where you used both front-end and back-end technologies. What was your role and what did you learn?",
-    type: "Problem Solving",
-  },
-  {
-    question:
-      "Can you explain the difference between JavaScript and TypeScript?",
-    type: "Technical",
-  },
-  {
-    question:
-      "How do you handle version control in your projects? Have you used Git or any other version control system?",
-    type: "Technical",
-  },
-  {
-    question:
-      "Describe a challenging problem you faced while working on a project and how you solved it.",
-    type: "Problem Solving",
-  },
-  {
-    question:
-      "Can you explain the concept of RESTful APIs and provide an example of how you might implement one?",
-    type: "Technical",
-  },
-  {
-    question: "How do you approach debugging and testing your code?",
-    type: "Technical",
-  },
-  {
-    question:
-      "What are some of the key considerations when designing a database schema?",
-    type: "Technical",
-  },
-  {
-    question: "Do you have any questions for us about the role or the company?",
-    type: "Behavioral",
-  },
-];
-
 function QuestionList({ formData, onCreateLink }) {
   const { user } = useUser();
   const [loading, setLoading] = useState(false);
@@ -137,7 +82,17 @@ function QuestionList({ formData, onCreateLink }) {
           interview_id: interview_id,
         },
       ])
-      .select("*");
+      .select();
+
+    //Update User Credits
+    const userUpdate = await supabase
+      .from("Users")
+      .update({ credits: Number(user?.credits) - 1 })
+      .eq("email", user?.email)
+      .select();
+
+    console.log(userUpdate);
+
     setSaveLoading(false);
     onCreateLink(interview_id);
   };

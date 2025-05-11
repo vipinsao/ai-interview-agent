@@ -143,3 +143,10 @@
     @apply bg-background text-foreground;
   }
 }
+.paypal-container {
+  max-width: 320px;
+  max-height: 680px;
+  margin: 0 auto;
+  transform: scale(0.95);
+  transform-origin: top center;
+}

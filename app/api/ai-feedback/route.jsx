@@ -15,7 +15,7 @@ export async function POST(req) {
       apiKey: process.env.OPENROUTER_API_KEY,
     });
     const completion = await openai.chat.completions.create({
-      model: "microsoft/mai-ds-r1:free",
+      model: "mistralai/mistral-7b-instruct:free",
       messages: [{ role: "user", content: FINAL_PROMPT }],
     });
 

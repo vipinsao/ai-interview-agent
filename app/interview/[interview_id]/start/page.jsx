@@ -76,7 +76,7 @@ function StartInterview() {
       conversation: conversation,
     });
 
-    // console.log(result);
+    console.log(result);
 
     // // Safe access: result.data and then get the content
     const Content = result.data; // fallback if API returns 'data' instead of 'content'

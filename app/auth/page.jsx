@@ -30,6 +30,7 @@ function Login() {
             alt="login"
             width={600}
             height={400}
+            onClick={signInWithGoogle}
             className="w-[400px] h-[250px] rounded-2xl object-cover border-2 hover:border-blue-300 mt-4 hover:scale-105 transition-all duration-75 cursor-pointer drag-none"
           />
           <div className="flex flex-col items-center mt-2">

@@ -1,15 +1,24 @@
 import { Button } from "@/components/ui/button";
 import moment from "moment/moment";
-import React from "react";
+import React, { useEffect } from "react";
 import CandidateFeedbackDialog from "./CandidateFeedbackDialog";
 
 function CandidateList({ candidate }) {
-  const feedback = candidate[0]?.feedback?.feedback;
-  const total =
-    feedback?.rating?.technicalSkills +
-    feedback?.rating?.communication +
-    feedback?.rating?.problemSolving +
-    feedback?.rating?.experience;
+  let total = null;
+  if (!candidate || !candidate[0]) {
+    return <div>Loading...</div>;
+  }
+  useEffect(() => {
+    if (candidate?.[0]?.feedback?.feedback) {
+      const feedback = candidate[0].feedback.feedback;
+      total =
+        (feedback.rating.technicalSkills || 0) +
+        (feedback.rating.communication || 0) +
+        (feedback.rating.problemSolving || 0) +
+        (feedback.rating.experience || 0);
+    }
+  }, [candidate]);
+
   return (
     <div>
       <h2 className="font-bold my-5">Candidates ({candidate?.length})</h2>
@@ -31,7 +40,7 @@ function CandidateList({ candidate }) {
             </div>
           </div>
           <div className="flex gap-2 items-center">
-            <h2 className="text-sm text-green-500">{total / 4}/10</h2>
+            {/* <h2 className="text-sm text-green-500">{total / 4}/10</h2> */}
             <CandidateFeedbackDialog candidate={candidate} />
           </div>
         </div>

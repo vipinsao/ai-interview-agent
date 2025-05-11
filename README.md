@@ -8,7 +8,7 @@ A smart, modern web application that automates technical interview scheduling, c
 ## 🚀 Live Demo
 
 🔗 [Click here to view the live app](https://ai-interview-agent-gules.vercel.app/)  
-🎥 [Watch a demo video](https://your-deployment-url.vercel.app/demo.mp4)
+🎥 [Watch a demo video](./public/demo.mp4)
 
 ---
 

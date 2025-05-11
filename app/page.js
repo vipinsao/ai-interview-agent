@@ -108,14 +108,14 @@ export default function LandingPage() {
             >
               Create Interview
             </Button>
-            <Link href={"/demo.mp4"}>
+            <a href={"/demo.mp4"} target="_blank" rel={"noopener noreferrer"}>
               <Button
                 variant="outline"
                 className="border-gray-300 text-gray-700 hover:bg-gray-100 cursor-pointer"
               >
                 Watch Demo
               </Button>
-            </Link>
+            </a>
           </div>
         </div>
         <div className="flex justify-center">

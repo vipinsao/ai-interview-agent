@@ -7,8 +7,8 @@ A smart, modern web application that automates technical interview scheduling, c
 
 ## 🚀 Live Demo
 
-🔗 [Click here to view the live app](https://your-deployment-url.vercel.app)  
-🎥 [Watch a demo video](https://your-deployment-url.vercel.app/demo.mp4)
+🔗 [Click here to view the live app](https://ai-interview-agent-gules.vercel.app/)  
+🎥 [Watch a demo video](https://drive.google.com/file/d/15x5dKG05FC5U26BiZ5P5UjnbHDauwMS0/view?usp=sharing)
 
 ---
 
@@ -45,8 +45,14 @@ A smart, modern web application that automates technical interview scheduling, c
 
 ## 📷 Screenshots
 
-> Add screenshots or a GIF showing login, scheduling, feedback, etc.
-
+>![Homepage](./homepage.png)
+## Homepage
+>![Dashboard](./dashboard.png)
+## Dashboard
+>![CreateInterview](./createInterview.png)
+## Create Interview
+>![Billing](./billing.png)
+## Billing
 ---
 
 ## ⚙️ Installation
@@ -96,13 +102,7 @@ Next.js (App Router)
 
 ## 🤝 Contributions
 
-This project is built and maintained by **[Vipin Chandra Sao](https://github.com/your-username)**.
-
----
-
-## 📄 License
-
-This project is licensed under the MIT License.
+This project is built and maintained by [Me](https://github.com/vipinsao) . Please support this project.
 
 ---
 

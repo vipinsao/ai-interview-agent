@@ -73,16 +73,10 @@ export default function LandingPage() {
         </nav>
         <div className="flex gap-2">
           <Button
-            className="bg-blue-600 text-white hover:bg-blue-70 cursor-pointer"
-            onClick={handleDashboardClick}
-          >
-            Dashboard
-          </Button>
-          <Button
             className="bg-green-400 text-white hover:bg-green-700 cursor-pointer"
             onClick={handleSignInClick}
           >
-            Sign in
+            {hasSession ? "Go to Dashboard" : "Sign In"}
           </Button>
         </div>
       </header>

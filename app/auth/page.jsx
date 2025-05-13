@@ -34,7 +34,7 @@ function Login() {
             className="w-[400px] h-[250px] rounded-2xl object-cover border-2 hover:border-blue-300 mt-4 hover:scale-105 transition-all duration-75 cursor-pointer drag-none"
           />
           <div className="flex flex-col items-center mt-2">
-            <h2 className="text-2xl font-bold">Welcome To AiCruiter</h2>
+            <h2 className="text-2xl font-bold">Welcome To AI Recruiter</h2>
             <p className="text-gray-700 text-center">
               Sign in With Google Authentication
             </p>
@@ -42,7 +42,7 @@ function Login() {
               onClick={signInWithGoogle}
               className="mt-2 cursor-pointer rounded-2xl w-full hover:bg-gray-700 hover:border-blue-200"
             >
-              Login With Google
+              Sign in With Google
             </Button>
           </div>
         </div>

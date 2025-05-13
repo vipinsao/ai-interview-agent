@@ -5,6 +5,7 @@ import React, { useEffect, useState } from "react";
 import InterviewCard from "../dashboard/_components/interviewCard";
 import { Video } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 function ScheduledInterview() {
   const { user } = useUser();
@@ -34,7 +35,9 @@ function ScheduledInterview() {
         <div className="p-5 flex flex-col gap-3 items-center  mt-5">
           <Video className="h-10 w-10 text-primary" />
           <h2>You dont have any interview created!</h2>
-          <Button>+ Create New Interview</Button>
+          <Link href={"/dashboard/create-interview"}>
+            <Button className={"cursor-pointer"}>+ Create New Interview</Button>
+          </Link>
         </div>
       ) : (
         <div className="grid grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-5">

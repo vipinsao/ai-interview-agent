@@ -10,7 +10,6 @@ dotenv.config();
 const app = express();
 
 const allowedOrigins = [
-  "http://localhost:3000", // local dev
   "https://ai-interview-agent-gules.vercel.app", // your deployed Vercel domain
 ];
 

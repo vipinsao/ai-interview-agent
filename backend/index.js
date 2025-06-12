@@ -8,17 +8,30 @@ import aiModelRoutes from "./routes/aiModel.js";
 
 dotenv.config();
 const app = express();
+
+const allowedOrigins = [
+  "http://localhost:3000", // local dev
+  "https://ai-interview-agent-gules.vercel.app", // your deployed Vercel domain
+];
+
+app.use(express.json());
+
 app.use(
   cors({
-    origin: [
-      "http://localhost:3000",
-      "https://ai-interview-agent-gules.vercel.app/",
-    ],
-    methods: ["GET", "POST"],
+    origin: function (origin, callback) {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
     credentials: true,
+    methods: ["GET", "POST", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
   })
 );
-app.use(express.json());
+
+app.options("*", cors());
 
 // Routes
 app.use("/api/ai-feedback", aiFeedbackRoutes);

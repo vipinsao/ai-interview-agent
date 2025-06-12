@@ -31,8 +31,6 @@ app.use(
   })
 );
 
-app.options("*", cors());
-
 // Routes
 app.use("/api/ai-feedback", aiFeedbackRoutes);
 app.use("/api/ai-model", aiModelRoutes);

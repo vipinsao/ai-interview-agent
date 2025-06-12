@@ -72,12 +72,9 @@ function StartInterview() {
   }, [interviewInfo]);
 
   const GenerateFeedback = async () => {
-    const result = await axios.post(
-      `${process.env.NEXT_PUBLIC_BACKEND_API}/api/ai-feedback`,
-      {
-        conversation: conversation,
-      }
-    );
+    const result = await axios.post("/api/ai-feedback", {
+      conversation: conversation,
+    });
 
     console.log(result);
 

@@ -25,7 +25,7 @@ function QuestionList({ formData, onCreateLink }) {
     setLoading(true);
     try {
       const result = await axios.post(
-        `{process.env.NEXT_PUBLIC_BACKEND_API}/api/ai-model`,
+        `${process.env.NEXT_PUBLIC_BACKEND_API}/api/ai-model`,
         {
           ...formData,
         }

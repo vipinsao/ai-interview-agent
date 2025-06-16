@@ -1,7 +1,9 @@
 
 # 🧠 AI Interview Recruiter
 
-A smart, modern web application that automates technical interview scheduling, candidate evaluation, and feedback collection using AI and real-time features.
+AI Interview Recruiter is a modern web application designed to assist job seekers and companies in streamlining the interview preparation and evaluation process. It simulates AI-based technical interview sessions where users answer automatically generated questions based on their selected domain or skill set. After the session, the system provides instant feedback and analysis to help candidates understand their strengths and areas for improvement. Built using technologies like Next.js, Tailwind CSS, and Supabase, the application offers a clean interface, secure authentication, and smooth performance. This project is aimed at students preparing for placements, individuals practicing for software roles, and organizations looking to experiment with automated candidate evaluation systems.
+
+
 
 ---
 
